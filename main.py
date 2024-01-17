@@ -109,11 +109,11 @@ print('\n@classmethod task nr. 5')
 
 
 class SpaceStation:
+    astronauts = []
     def __init__(self, name, nationality, mission_duration):
         self.name = name
         self.nationality = nationality
         self.mission_duration = mission_duration
-        self.astronauts = []
 
     def add_astronaut(self):
         dictionary = {'name': self.name, 'nationality': self.nationality, 'mission_duration': self.mission_duration}
@@ -129,7 +129,7 @@ class SpaceStation:
 
     @classmethod
     def from_astronaut_list(cls):
-
+        return cls.astronauts
 
 
 Joseph = SpaceStation('Joseph M. Acaba', 'USA', 12)
@@ -137,4 +137,5 @@ Vladimir = SpaceStation('Vladimir Aksyonov', 'China', 7)
 
 print(Joseph.add_astronaut())
 print(Vladimir.add_astronaut())
-print(Joseph.find_astronaut('Vladimir'))
+print(Vladimir.find_astronaut('Aksyonov'))
+print(SpaceStation.from_astronaut_list())
