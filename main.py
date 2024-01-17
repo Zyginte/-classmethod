@@ -66,7 +66,11 @@ print('\n@classmethod task nr. 4')
 
 class BankAccount:
     balance = 0
-    def
+
+    def __init__(self, name, acc_balance):
+        self.name = name
+        self.acc_balance = acc_balance
+        self.account = self.name, self.acc_balance
 
     def deposit(self):
         deposit_amount = float(input('Insert amount: '))
@@ -88,7 +92,49 @@ class BankAccount:
 
     @staticmethod
     def transfer(amount):
+        acc1.acc_balance = acc1.acc_balance - amount
+        acc2.acc_balance = acc2.acc_balance + amount
+        return f'acc1 balance: {acc1.acc_balance}\nacc2 balance: {acc2.acc_balance}'
 
-acc1 = BankAccount(5000)
-acc2 = BankAccount(300)
+
+acc1 = BankAccount('Paulina', 5000)
+acc2 = BankAccount('Orinta', 13000)
+
 print(BankAccount.from_balance(20))
+print(BankAccount.transfer(20))
+print(acc1.account)
+
+
+print('\n@classmethod task nr. 5')
+
+
+class SpaceStation:
+    def __init__(self, name, nationality, mission_duration):
+        self.name = name
+        self.nationality = nationality
+        self.mission_duration = mission_duration
+        self.astronauts = []
+
+    def add_astronaut(self):
+        dictionary = {'name': self.name, 'nationality': self.nationality, 'mission_duration': self.mission_duration}
+        self.astronauts.append(dictionary)
+        return self.astronauts
+
+    def find_astronaut(self, name):
+        for dictionary in self.astronauts:
+            if name in dictionary['name']:
+                return dictionary
+            else:
+                return None
+
+    @classmethod
+    def from_astronaut_list(cls):
+
+
+
+Joseph = SpaceStation('Joseph M. Acaba', 'USA', 12)
+Vladimir = SpaceStation('Vladimir Aksyonov', 'China', 7)
+
+print(Joseph.add_astronaut())
+print(Vladimir.add_astronaut())
+print(Joseph.find_astronaut('Vladimir'))
