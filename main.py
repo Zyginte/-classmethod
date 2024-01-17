@@ -109,14 +109,11 @@ print('\n@classmethod task nr. 5')
 
 
 class SpaceStation:
-    astronauts = []
-    def __init__(self, name, nationality, mission_duration):
-        self.name = name
-        self.nationality = nationality
-        self.mission_duration = mission_duration
+    def __init__(self):
+        self.astronauts = []
 
-    def add_astronaut(self):
-        dictionary = {'name': self.name, 'nationality': self.nationality, 'mission_duration': self.mission_duration}
+    def add_astronaut(self, name, nationality, missio_duration):
+        dictionary = {'name': name, 'nationality': nationality, 'mission_duration': missio_duration }
         self.astronauts.append(dictionary)
         return self.astronauts
 
@@ -128,14 +125,34 @@ class SpaceStation:
                 return None
 
     @classmethod
-    def from_astronaut_list(cls):
-        return cls.astronauts
+    def from_astronaut_list(cls, astronaut_list):
+        return astronaut_list
+
+    @staticmethod
+    def is_long_term_mission(astronaut_dictionary):
+        if astronaut_dictionary['mission_duration'] < 180:
+            return False
+        else:
+            return True
+
+    def remove_astronaut(self, name):
+        for dictionary in self.astronauts:
+            if name in dictionary['name']:
+                self.astronauts.remove(dictionary)
+                return self.astronauts
+            else:
+                return None
 
 
-Joseph = SpaceStation('Joseph M. Acaba', 'USA', 12)
-Vladimir = SpaceStation('Vladimir Aksyonov', 'China', 7)
+space_station = SpaceStation()
 
-print(Joseph.add_astronaut())
-print(Vladimir.add_astronaut())
-print(Vladimir.find_astronaut('Aksyonov'))
-print(SpaceStation.from_astronaut_list())
+print(space_station.add_astronaut('Joseph M. Acab', 'USA', 12))
+print(space_station.add_astronaut('Vladimir Aksyonov', 'China', 7))
+print(space_station.find_astronaut('Vladimir Aksyonov'))
+
+print(SpaceStation.from_astronaut_list(space_station.astronauts))
+
+print(SpaceStation.is_long_term_mission({'name': 'Joseph M. Acab', 'nationality': 'USA', 'mission_duration': 12}))
+
+print(space_station.remove_astronaut('Joseph'))
+
